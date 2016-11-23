@@ -26,10 +26,10 @@ const srcDir = {
 const distDir = './dist';
 
 var processes = [
-	// autoprefixer({ browsers: ['last 2 version', 'safari 5', 'opera 12.1', 'ios 6', 'android 4'] }),
+    // autoprefixer({ browsers: ['last 2 version', 'safari 5', 'opera 12.1', 'ios 6', 'android 4'] }),
     atImport,
-	precss,
-	// cssnano,  // 压缩
+    precss,
+    // cssnano,  // 压缩
 ];
 
 gulp.task('image', ()=>{
