@@ -1,0 +1,22 @@
+{
+  "name": "wxAppp",
+  "version": "1.0.0",
+  "description": "wxAPP 构建工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijiliang/wxApp.git"
+  },
+  "author": "lijiliang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lijiliang/wxApp/issues"
+  },
+  "homepage": "https://github.com/lijiliang/wxApp#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

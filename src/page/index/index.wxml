@@ -1,0 +1,99 @@
+<!--index.wxml-->
+<view class="index">
+    <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper-con">
+        <block wx:for="{{imgUrls}}">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" width="100%" height="240px"/>
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="active-container">
+        <view class="active-config">
+            <view class="active-bg">
+                <text class="active-tit">乐途会FM105.2滴答滴购车双喜月</text>
+                <text class="active-time">活动时间:2016.11.18~2016.11.27</text>
+            </view>
+        </view>
+        <view class="active-group">
+            <view class="group-brand">
+                <view class="icon-hot"></view>
+                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                <view class="name">日产</view>
+                <view class="btn-enroll">报名</view>
+            </view>
+            <view class="group-type-item">
+                <view class="type-img">
+                    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                </view>
+                <view class="type-info">
+                    <text class="info-name">轩逸 2016款 1.6L CVT XL 豪华版 </text>
+                    <view class="info-price">
+                        <view class="item-price item1">指导价：<text>13.50</text>万</view>
+                        <view class="item-price item2"><text>￥11.00</text>万</view>
+                        <view class="item-price item3"><view class="i-down"></view><text>2.3万</text></view>
+                    </view>
+                </view>
+            </view>
+            <view class="group-type-item">
+                <view class="type-img">
+                    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                </view>
+                <view class="type-info">
+                    <text class="info-name">轩逸 2016款 1.6L CVT XL 豪华版6款 1.6L CVT XL 豪华版 </text>
+                    <view class="info-price">
+                        <view class="item-price item1">指导价：<text>13.50</text>万</view>
+                        <view class="item-price item2"><text>￥11.00</text>万</view>
+                        <view class="item-price item3"><view class="i-down"></view><text>2.3万</text></view>
+                    </view>
+                </view>
+            </view>
+            <view class="group-toggle">
+                <view class="btn-toggle">
+                    <view class="i-more"></view>
+                    <text>查看更多</text>
+                </view>
+            </view>
+        </view>
+        <view class="active-group">
+            <view class="group-brand">
+                <view class="icon-hot"></view>
+                <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                <view class="name">日产</view>
+                <view class="btn-enroll">报名</view>
+            </view>
+            <view class="group-type-item">
+                <view class="type-img">
+                    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                </view>
+                <view class="type-info">
+                    <text class="info-name">轩逸 2016款 1.6L CVT XL 豪华版 </text>
+                    <view class="info-price">
+                        <view class="item-price item1">指导价：<text>13.50</text>万</view>
+                        <view class="item-price item2"><text>￥11.00</text>万</view>
+                        <view class="item-price item3"><view class="i-down"></view><text>2.3万</text></view>
+                    </view>
+                </view>
+            </view>
+            <view class="group-type-item">
+                <view class="type-img">
+                    <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"></image>
+                </view>
+                <view class="type-info">
+                    <text class="info-name">轩逸 2016款 1.6L CVT XL 豪华版6款 1.6L CVT XL 豪华版 </text>
+                    <view class="info-price">
+                        <view class="item-price item1">指导价：<text>13.50</text>万</view>
+                        <view class="item-price item2"><text>￥11.00</text>万</view>
+                        <view class="item-price item3"><view class="i-down"></view><text>2.3万</text></view>
+                    </view>
+                </view>
+            </view>
+            <view class="group-toggle">
+                <view class="btn-toggle">
+                    <view class="i-more"></view>
+                    <text>查看更多</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

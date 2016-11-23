@@ -1,0 +1,51 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/show/index",
+    "pages/specials/index",
+    "pages/user/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+      "navigationBarTextStyle": "white",
+      "navigationBarTitleText": "滴答滴专题",
+      "navigationBarBackgroundColor": "#dd2726",
+      "backgroundColor": "#f0f1f3",
+      "backgroundTextStyle": "#ffffff",
+      "enablePullDownRefresh": "true"
+  },
+  "tabBar": {
+      "color": "#333333",
+      "selectedColor": "#dd2726",
+      "backgroundColor": "#ffffff",
+      "borderStyle": "black",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "优惠",
+        "iconPath": "image/youhui.png",
+        "selectedIconPath": "image/youhui_light.png"
+    }, {
+        "pagePath": "pages/show/index",
+        "text": "车展团购",
+        "iconPath": "image/tuangou.png",
+        "selectedIconPath": "image/tuangou_light.png"
+    }, {
+        "pagePath": "pages/specials/index",
+        "text": "车展团购",
+        "iconPath": "image/tejia.png",
+        "selectedIconPath": "image/tejia_light.png"
+    },{
+        "pagePath": "pages/user/index",
+        "text": "我的订单",
+        "iconPath": "image/order.png",
+        "selectedIconPath": "image/order_light.png"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}
