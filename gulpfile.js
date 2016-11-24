@@ -13,16 +13,22 @@ const cssnano = require('cssnano');
 const atImport = require('postcss-import');
 const autoprefixer = require('autoprefixer');
 const base64 = require('gulp-base64');
+// const base64 = require('postcss-base64');
 const rename = require('gulp-rename')
 
 // 源目录
 const srcDir = {
-    image: './src/**/*.{png,jpg,jpeg,svg}',
     js: './src/**/*.js',
     views: './src/**/*.{html,wxml}',
     wxss: './src/**/*.wxss',
-    json: './src/**/*.json'
+    json: './src/**/*.json',
+    image: [
+        `./src/**/*.{png,jpg,jpeg,svg}`,
+        `!src/**/_*/*.{png,jpg,jpeg,svg}`,
+        `!src/**/_*.{png,jpg,jpeg,svg}`
+    ]
 }
+
 // 输出目录
 const distDir = './dist';
 
@@ -30,7 +36,7 @@ var processes = [
     // autoprefixer({ browsers: ['last 2 version', 'safari 5', 'opera 12.1', 'ios 6', 'android 4'] }),
     atImport,
     precss,
-    // cssnano,  // 压缩
+    cssnano,  // 压缩
 ];
 
 gulp.task('image', ()=>{
@@ -86,12 +92,12 @@ gulp.task('clean', ()=>{
 
 // 开发环境下编译
 gulp.task('dev', ()=>{
-    gulp.start('image','image:watch','json','json:watch','js','js:watch', 'wxss','wxss:watch','views','views:watch')
+    gulp.start('image','image:watch','json','json:watch','js','js:watch', 'wxss','wxss:watch','views','views:watch');
 });
 
 // 正式环境下编译
 gulp.task('build', ['clean'], ()=>{
-    // gulp.start('image','json')
+    gulp.start('image','json','js','wxss','views');
 });
 
 // 编译image文件
@@ -147,10 +153,10 @@ function views(file){
  */
 function compileWxss(src, dist, file) {
 	return gulp.src(src)
-	// .pipe(base64({
-	// 	extensions: ['png', /\.jpg#datauri$/i],
-	// 	maxImageSize: 10 * 1024 // bytes,
-	// }))
+	.pipe(base64({
+		extensions: ['png', /\.jpg#datauri$/i],
+		maxImageSize: 10 * 1024 // bytes,
+	}))
 	.pipe(postcss(processes))
 	.pipe(gulp.dest(dist))
     .on('end', ()=>{
