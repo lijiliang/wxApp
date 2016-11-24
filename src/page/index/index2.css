@@ -1,0 +1,10 @@
+.index2_css{
+    color: #fff;
+    font-size: 50px;
+    .ddd-index{
+        background: #fff;
+    }
+    .eee-index{
+        background: red;
+    }
+}

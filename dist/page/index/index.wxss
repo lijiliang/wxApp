@@ -1,4 +1,14 @@
 /**index.wxss**/
+.index2_css{
+    color: #fff;
+    font-size: 50px;
+}
+.index2_css .ddd-index{
+    background: #fff;
+}
+.index2_css .eee-index{
+    background: red;
+}
 page{
     background: #e81148;
 }

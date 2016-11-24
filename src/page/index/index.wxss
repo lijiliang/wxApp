@@ -1,4 +1,6 @@
 /**index.wxss**/
+@import "./index2.css";
+
 page{
     background: #e81148;
 }
