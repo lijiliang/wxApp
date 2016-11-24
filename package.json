@@ -4,7 +4,8 @@
   "description": "wxAPP 构建工具",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp dev --color --profile",
+    "build": "gulp build --color --profile"
   },
   "repository": {
     "type": "git",
