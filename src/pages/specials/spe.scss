@@ -1,7 +1,7 @@
-@color: #fff;
+$color: #fff;
 .aa{
-    color: @color;
-    background: @color;
+    color: $color;
+    background: $color;
     .page{
         display: block;
         .ccc{
@@ -15,5 +15,8 @@
     font-size: 27px;
     text-decoration: none;
     text-overflow: clip;
-    border-radius: 10px;
+    .spe{
+        background: #000;
+        color: #f60;
+    }
 }

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "gulp dev --color --profile",
-    "build": "gulp build --color --profile"
+    "build": "gulp build --color --profile",
+    "clean": "gulp clean --color --profile"
   },
   "repository": {
     "type": "git",

@@ -8,6 +8,7 @@ wxApp是一个由gulp构建微信小程序项目
 - 支持postcss预处理器
 - 支持编译HTML模板成wxml
 - 支持图片资源的编译
+- 支持less,sass编译成wxss
 
 ## 使用说明
 
@@ -27,4 +28,9 @@ npm run dev
 ### 构建模式
 ```shell
 npm run build
+```
+
+### 清理dist目录下的文件
+```shell
+npm run cl
 ```

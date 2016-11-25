@@ -33,16 +33,16 @@ const srcDir = {
         `!src/**/_*/*.{png,jpg,jpeg,svg}`,
         `!src/**/_*.{png,jpg,jpeg,svg}`
     ],
-    css: [
-        `./src/**/*.{scss,less,sass}`,
-        `!src/**/_*/*.{scss,less,sass}`,
-        `!src/**/_*.{scss,less,sass}`
+    less: [
+        `./src/**/*.less`,
+        `!src/**/_*/*.less`,
+        `!src/**/_*.less`
     ],
-    // css: [
-    //     `./src/**/*.(scss|less|sass)`,
-    //     `!src/**/_*/*.(scss|less|sass)`,
-    //     `!src/**/_*.(scss|less|sass)`
-    // ]
+    sass: [
+        `./src/**/*.{scss,sass}`,
+        `!src/**/_*/*.{scss,sass}`,
+        `!src/**/_*.{scss,sass}`
+    ]
 }
 
 // 输出目录
@@ -91,13 +91,22 @@ gulp.task('wxss:watch', ()=>{
     })
 })
 
-gulp.task('css', ()=>{
-    compileLess(srcDir.css, distDir);
+gulp.task('less', ()=>{
+    compileLess(srcDir.less, distDir);
 })
-gulp.task('css:watch', ()=>{
-    watch(srcDir.css, {event: ['add','change','unlink']}, function(file){
-        compileLess(srcDir.css, distDir, file);
+gulp.task('less:watch', ()=>{
+    watch(srcDir.less, {event: ['add','change','unlink']}, function(file){
+        compileLess(srcDir.less, distDir, file);
     });
+})
+
+gulp.task('sass', ()=>{
+    compileSass(srcDir.sass, distDir);
+})
+gulp.task('sass:watch', ()=>{
+    watch(srcDir.sass, {event: ['add','change','unlink']}, function(file){
+        compileSass(srcDir.sass, distDir, file);
+    })
 })
 
 gulp.task('views', ()=>{
@@ -117,13 +126,15 @@ gulp.task('clean', ()=>{
 
 // 开发环境下编译
 gulp.task('dev', ()=>{
-    gulp.start('image', 'image:watch', 'json', 'json:watch', 'js', 'js:watch', 'wxss', 'wxss:watch', 'css', 'css:watch', 'views', 'views:watch');
+    gulp.start('image', 'image:watch', 'json', 'json:watch', 'js', 'js:watch', 'wxss', 'wxss:watch', 'less', 'less:watch', 'sass', 'sass:watch', 'views', 'views:watch');
 });
 
 // 正式环境下编译
-gulp.task('build', ['clean'], ()=>{
+gulp.task('build',  ()=>{
     isBuild = true;
-    gulp.start('image', 'json', 'js', 'wxss', 'css', 'views');
+    gulp.start(['image', 'json', 'js', 'wxss', 'less', 'sass', 'views'], function(){
+        console.log('build success!!!')
+    });
 });
 
 // 编译image文件
@@ -217,6 +228,30 @@ function compileLess(src, dist, file){
             console.log(file.path + ' to wxss complite!');
         }else{
             console.log('less to wxss complite!');
+        }
+    })
+}
+
+/**
+ * [compileWxss 编译sass文件]
+ */
+function compileSass(src, dist, file){
+    return gulp.src(src)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(base64({
+		extensions: ['png', /\.jpg#datauri$/i],
+		maxImageSize: 10 * 1024 // bytes,
+	}))
+    .pipe(ifElse(isBuild === true, function () {
+		return postcss(processes);
+	}))
+    .pipe(rename({extname: '.wxss'}))
+    .pipe(gulp.dest(dist))
+    .on('end', ()=>{
+        if(file){
+            console.log(file.path + ' to wxss complite!');
+        }else{
+            console.log('sass to wxss complite!');
         }
     })
 }
