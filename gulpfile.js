@@ -144,7 +144,7 @@ function views(file){
                 console.log('wxml complite! ');
             }
         });
-}
+}  
 /**
  * [compileWxss 编译WXSS文件]
  * @param  {[string]} src  [源目录]
