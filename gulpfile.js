@@ -16,6 +16,10 @@ const base64 = require('gulp-base64');
 // const base64 = require('postcss-base64');
 const rename = require('gulp-rename')
 const jshint = require('gulp-jshint');
+const less = require('gulp-less');
+const plumber = require('gulp-plumber');
+const ifElse = require('gulp-if-else');
+var isBuild = false;
 
 // 源目录
 const srcDir = {
@@ -27,6 +31,11 @@ const srcDir = {
         `./src/**/*.{png,jpg,jpeg,svg}`,
         `!src/**/_*/*.{png,jpg,jpeg,svg}`,
         `!src/**/_*.{png,jpg,jpeg,svg}`
+    ],
+    css: [
+        `./src/**/*.{less,sass,scss}`,
+        `!/src/**/_*/*.{less,sass,scss}`,
+        `!src/**/_*.{less,sass,scss}`
     ]
 }
 
@@ -76,6 +85,15 @@ gulp.task('wxss:watch', ()=>{
     })
 })
 
+gulp.task('css', ()=>{
+    compileLess(srcDir.css, distDir);
+})
+gulp.task('css:watch', ()=>{
+    watch([srcDir.css], {event: ['add','change','unlink']}, (file)=>{
+        compileLess(srcDir.css, distDir, file);
+    })
+})
+
 gulp.task('views', ()=>{
     views();
 })
@@ -93,12 +111,13 @@ gulp.task('clean', ()=>{
 
 // 开发环境下编译
 gulp.task('dev', ()=>{
-    gulp.start('image','image:watch','json','json:watch','js','js:watch', 'wxss','wxss:watch','views','views:watch');
+    gulp.start('image', 'image:watch', 'json', 'json:watch', 'js', 'js:watch', 'wxss', 'wxss:watch', 'css', 'css:watch', 'views', 'views:watch');
 });
 
 // 正式环境下编译
 gulp.task('build', ['clean'], ()=>{
-    gulp.start('image','json','js','wxss','views');
+    isBuild = true;
+    gulp.start('image', 'json', 'js', 'wxss', 'css', 'views');
 });
 
 // 编译image文件
@@ -167,6 +186,31 @@ function compileWxss(src, dist, file) {
             console.log(file.path + ' complite!')
         }else{
             console.log('wxss complite!')
+        }
+    })
+}
+
+/**
+ * [compileWxss 编译less文件]
+ */
+function compileLess(src, dist, file){
+    return gulp.src(src)
+    .pipe(plumber())
+    .pipe(less())
+    .pipe(base64({
+		extensions: ['png', /\.jpg#datauri$/i],
+		maxImageSize: 10 * 1024 // bytes,
+	}))
+    .pipe(ifElse(isBuild === true, function () {
+		return postcss(processes);
+	}))
+    .pipe(rename({extname: '.wxss'}))
+    .pipe(gulp.dest(dist))
+    .on('end', ()=>{
+        if(file){
+            console.log(file.path, + ' to wxss complite!');
+        }else{
+            console.log('less to wxss complite!');
         }
     })
 }

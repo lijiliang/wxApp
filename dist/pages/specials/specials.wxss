@@ -1,0 +1,11 @@
+.aa {
+  color: #fff;
+  background: #fff;
+}
+.aa .page {
+  display: block;
+}
+.aa .page .ccc {
+  float: left;
+  width: 100px;
+}
