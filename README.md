@@ -30,7 +30,7 @@ npm run dev
 npm run build
 ```
 
-### 清理dist目录下的文件
+### 清理生成目录下的文件
 ```shell
-npm run cl
+npm run clean
 ```
