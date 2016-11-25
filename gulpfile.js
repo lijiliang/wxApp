@@ -17,6 +17,7 @@ const base64 = require('gulp-base64');
 const rename = require('gulp-rename')
 const jshint = require('gulp-jshint');
 const less = require('gulp-less');
+const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 const ifElse = require('gulp-if-else');
 var isBuild = false;
@@ -33,10 +34,15 @@ const srcDir = {
         `!src/**/_*.{png,jpg,jpeg,svg}`
     ],
     css: [
-        `./src/**/*.{less,sass,scss}`,
-        `!/src/**/_*/*.{less,sass,scss}`,
-        `!src/**/_*.{less,sass,scss}`
-    ]
+        `./src/**/*.{scss,less,sass}`,
+        `!src/**/_*/*.{scss,less,sass}`,
+        `!src/**/_*.{scss,less,sass}`
+    ],
+    // css: [
+    //     `./src/**/*.(scss|less|sass)`,
+    //     `!src/**/_*/*.(scss|less|sass)`,
+    //     `!src/**/_*.(scss|less|sass)`
+    // ]
 }
 
 // 输出目录
@@ -89,9 +95,9 @@ gulp.task('css', ()=>{
     compileLess(srcDir.css, distDir);
 })
 gulp.task('css:watch', ()=>{
-    watch([srcDir.css], {event: ['add','change','unlink']}, (file)=>{
+    watch(srcDir.css, {event: ['add','change','unlink']}, function(file){
         compileLess(srcDir.css, distDir, file);
-    })
+    });
 })
 
 gulp.task('views', ()=>{
@@ -208,7 +214,7 @@ function compileLess(src, dist, file){
     .pipe(gulp.dest(dist))
     .on('end', ()=>{
         if(file){
-            console.log(file.path, + ' to wxss complite!');
+            console.log(file.path + ' to wxss complite!');
         }else{
             console.log('less to wxss complite!');
         }

@@ -30,6 +30,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
     "gulp-watch": "^4.3.11",
     "jshint": "^2.9.4",
     "path": "^0.12.7",

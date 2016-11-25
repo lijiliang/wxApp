@@ -9,3 +9,9 @@
   float: left;
   width: 100px;
 }
+.c_index {
+  background: #000;
+  font-size: 27px;
+  text-decoration: none;
+  text-overflow: clip;
+}
