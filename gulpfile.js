@@ -15,6 +15,7 @@ const autoprefixer = require('autoprefixer');
 const base64 = require('gulp-base64');
 // const base64 = require('postcss-base64');
 const rename = require('gulp-rename')
+const jshint = require('gulp-jshint');
 
 // 源目录
 const srcDir = {
@@ -122,6 +123,8 @@ function json() {
 // 编译js
 function js(file){
     gulp.src(srcDir.js)
+        .pipe(jshint())
+        // .pipe(jshint.reporter())
         .pipe(gulp.dest(distDir))
         .on('end', ()=>{
             if(file){
@@ -144,7 +147,7 @@ function views(file){
                 console.log('wxml complite! ');
             }
         });
-}  
+}
 /**
  * [compileWxss 编译WXSS文件]
  * @param  {[string]} src  [源目录]
